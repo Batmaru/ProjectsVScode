@@ -147,9 +147,42 @@ else:
     nel3_slice.extend(tre_numeri_mezzo)
     nel3_slice.extend(nel3[-3:])
     print(nel3_slice)
-        
+print()
+
+#4.11
+#My Pizzas, Your Pizzas: Start with your program from Exercise 4-1. Make a copy of the list of pizzas, and call 
+#it friend_pizzas. Then, do the following:
+#• Add a new pizza to the original list.
+#• Add a different pizza to the list friend_pizzas.
+#• Prove that you have two separate lists. Print the message My favorite pizzas are:, and then 
+# use a for loop to print the first list. Print the message My friend’s favorite pizzas are:, 
+# and then use a for loop to print the second list. Make sure each new pizza is stored in the appropriate list.'
+
+friends_pizza: list[str]=[]
+for pizza in pizzas:
+    friends_pizza.append(pizza)
+pizzas.append('4 formaggi')
+friends_pizza.append('rossa')
+print('my favorite pizzas are:', pizzas,'\n')
+print("my friend's favorite pizzas are:", friends_pizza,'\n')
+
+#4-12. 
+# More Loops: All versions of foods.py in this section have avoided using for loops when printing, 
+# to save space. Choose a version of foods.py, and write two for loops to print each list of foods.
 
 
+# Lista di cibi
+my_foods = ['pizza', 'chicken', 'chocolate cake']
+friend_foods = my_foods[:]
+friend_foods.append('icecream')
+
+print("My favorite foods are:")
+for food in my_foods:
+    print(food)
+
+print("\nMy friend's favorite foods are:")
+for food in friend_foods:
+    print(food)
 
 
 
