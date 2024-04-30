@@ -52,3 +52,32 @@ make_shirt_modified('pantalone', 'S')
 
 
 
+#8-5. Città: scrivi una funzione chiamata description_city() che accetta il nome di una città e del suo paese. La funzione 
+# dovrebbe stampare una frase semplice, come Reykjavik è in Islanda. Assegnare al parametro per il paese un valore predefinito.
+# Chiama la tua funzione per tre città diverse, almeno una delle quali non è nel Paese predefinito.
+
+def description_city(city: str, country: str = "Italia") -> None:
+    print(f"{city} si trova in {country}.")
+
+description_city("Roma")
+description_city("New York", "Stati Uniti")
+description_city("Tokyo", "Giappone")
+print()
+
+#8-6. Nomi di città: scrivi una funzione chiamata city_country() che accetta il nome di una città e del suo paese. La funzione dovrebbe 
+# restituire una stringa formattata in questo modo: "Santiago, Cile". Chiama la tua funzione con almeno tre coppie città-paese e stampa 
+# i valori restituiti.
+
+def city_country(city: str, country: str):
+    print(f"{city}, {country}")
+    
+city_country("Roma", "Italia")
+city_country("New York", "Stati Uniti")
+city_country("Tokyo", "Giappone")
+
+#8-7. Album: scrivi una funzione chiamata make_album() che costruisce un dizionario che descrive un album musicale. La funzione dovrebbe 
+# includere il nome dell'artista e il titolo dell'album e dovrebbe restituire un dizionario contenente queste due informazioni. Utilizza 
+# la funzione per creare tre dizionari che rappresentano album diversi. Stampa ciascun valore restituito per mostrare che i dizionari 
+# memorizzano correttamente le informazioni sull'album. Utilizza None per aggiungere un parametro facoltativo a make_album() che ti consente 
+# di memorizzare il numero di brani su un album. Se la riga chiamante include un valore per il numero di brani, aggiungi tale valore al dizionario 
+# dell'album. Effettua almeno una nuova chiamata di funzione che includa il numero di brani di un album.

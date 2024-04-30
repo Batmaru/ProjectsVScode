@@ -189,5 +189,21 @@ print()
 # You won’t use much of it now, but it might be interesting to skim through it.
 
 
+#5.10
+current_users = ['giorgio', 'francesca', 'mario', 'sara', 'andrea']
+new_users = ['luca', 'sara', 'giulia', 'marta', 'FRANCESCA']
+current_users_lower=[]
+for user in current_users:
+    current_users_lower.append(user.lower())
+
+for new_user in new_users:
+    new_user_lower = new_user.lower()
+    if new_user_lower in current_users_lower:
+        print(f"Il nome utente '{new_user}' è già stato utilizzato. Si prega di inserire un nuovo nome utente.")
+    else:
+        print(f"Il nome utente '{new_user}' è disponibile.")
+
+
+
 
 
