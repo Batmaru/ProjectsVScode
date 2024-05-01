@@ -74,6 +74,7 @@ def city_country(city: str, country: str):
 city_country("Roma", "Italia")
 city_country("New York", "Stati Uniti")
 city_country("Tokyo", "Giappone")
+print()
 
 #8-7. Album: scrivi una funzione chiamata make_album() che costruisce un dizionario che descrive un album musicale. La funzione dovrebbe 
 # includere il nome dell'artista e il titolo dell'album e dovrebbe restituire un dizionario contenente queste due informazioni. Utilizza 
@@ -81,3 +82,108 @@ city_country("Tokyo", "Giappone")
 # memorizzano correttamente le informazioni sull'album. Utilizza None per aggiungere un parametro facoltativo a make_album() che ti consente 
 # di memorizzare il numero di brani su un album. Se la riga chiamante include un valore per il numero di brani, aggiungi tale valore al dizionario 
 # dell'album. Effettua almeno una nuova chiamata di funzione che includa il numero di brani di un album.
+
+def make_album(name: str, title: str, songs: int=None)->dict[str,str,int]:
+    artist_dict: dict={
+        'artist': name,
+        'album_title': title
+        }
+    if songs is not None:
+        artist_dict['num_songs']=songs
+    return artist_dict
+
+album1 = make_album('Michael Jackson', 'Thriller')
+album2 = make_album('The Beatles', 'Abbey Road')
+album3 = make_album('Pink Floyd', 'The Dark Side of the Moon', 10)
+album4 = make_album('Queen', 'A Night at the Opera')
+album5 = make_album('Led Zeppelin', 'Led Zeppelin IV', 8)
+
+print(album1)
+print(album2)
+print(album3)
+print(album4)
+print(album5)
+print()
+
+#8-8. Album utente: inizia con il tuo programma dall'esercizio 8-7. Scrivi un ciclo while che consenta agli utenti di inserire l'artista e il 
+# titolo di un album. Una volta ottenute queste informazioni, chiama make_album() con l'input dell'utente e stampa il dizionario creato. Assicurati 
+# di includere a 'quit value' nel ciclo while.
+# def make_album1(name: str, title: str, songs: int=None) -> dict:
+#     artist_dict = {
+#         'artist': name,
+#         'album_title': title
+#     }
+#     if songs is not None:
+#         artist_dict['num_songs'] = songs
+#     return artist_dict
+
+# artist = ''
+# songs = ''
+# while artist.lower() != 'quit':
+  
+#     while True:   
+#         artist = input("Inserisci il nome dell'artista (o 'quit' per uscire): ")
+#         if artist.isalpha():
+#             artist=str(artist)
+#             break
+            
+#         else:
+#             print('errore questo non è un nome')
+#             continue
+#     if artist.lower() == 'quit':
+#                 break
+#     else:   
+#         title = input("Inserisci il titolo dell'album: ")
+
+#         while True:
+#             songs=input("inserisci il numero delle canzoni (se non c'è questa informazione non inserire): ")
+#             if songs!='':
+#                 if songs.isdigit():
+#                         songs=int(songs)
+#                         break
+#                 else:
+#                     print('errore questo non è un numero')
+#                     continue
+#             else:
+#                 songs=None
+#                 break
+#     print(make_album1(artist, title, songs))
+    
+# print()
+
+
+#8-9. Messaggi: crea un elenco contenente una serie di brevi messaggi di testo. Passa l'elenco a una funzione chiamata show_messages(), 
+# che stampa ogni messaggio di testo.
+messages = [
+    "Ciao! Come stai?",
+    "Buongiorno a tutti!",
+    "Non vedo l'ora di iniziare!",
+    "Hai finito il compito?",
+    "Ricordati di fare la spesa.",
+    "Il tempo oggi è fantastico!",
+    "Sto imparando Python e mi diverto un sacco!",
+    "Buon lavoro a tutti!",
+    "Sono così felice oggi!",
+    "Domani è un nuovo giorno pieno di opportunità!",
+    "Ti auguro una giornata fantastica!"
+]
+
+def show_messages(lista: list)->str:
+    for phrase in lista:
+        print(f'{phrase}')
+        
+show_messages(messages)
+print()
+
+#8-10. Sending Messages: Start with a copy of your program from Exercise 8-9. Write a function called send_messages() that prints each 
+# text message and moves each message to a new list called sent_messages as it’s printed. After calling the function, print both of your 
+# lists to make sure the messages were moved correctly.
+
+def send_messages(lista: list)->list:
+    sent_messages: list=[]
+    for phrase in lista:
+        sent_messages.append(phrase)
+    print(f'la lista è: {lista}\n')
+    print(f'la lista copiata è: {sent_messages}\n')
+
+send_messages(messages)    
