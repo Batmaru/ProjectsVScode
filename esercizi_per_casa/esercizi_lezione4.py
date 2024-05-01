@@ -187,3 +187,50 @@ def send_messages(lista: list)->list:
     print(f'la lista copiata è: {sent_messages}\n')
 
 send_messages(messages)    
+print()
+
+#8-11. Archived Messages: Start with your work from Exercise 8-10. Call the function send_messages() with a copy of the list of messages. 
+# After calling the function, print both of your lists to show that the original list has retained its messages.
+
+def send_messages(lista: list)->list:
+    sent_messages: list=[]
+    for phrase in lista:
+        sent_messages.append(phrase)
+    return sent_messages
+
+copy_messages=send_messages(messages.copy())
+print(f'la lista originale è: {messages}\n')
+print(f'la copia della lista è: {copy_messages}')
+print()
+
+#8-12. Sandwiches: Write a function that accepts a list of items a person wants on a sandwich. The function should have one parameter that collects 
+# as many items as the function call provides, and it should print a summary of the sandwich that’s being ordered. Call the function three times, 
+# using a different number of arguments each time.
+
+def sandwich(name:str, ingredients: list)->dict[str, list]:
+    person_dict={
+        'name': name,
+        'ingredients':ingredients
+    }
+    print(f"gli ingredienti del panino di {person_dict['name']} sono: {person_dict['ingredients']}")
+
+
+sandwich('Marco', ['Prosciutto', 'Formaggio'])
+sandwich('Giulia', ['Salame', 'Mozzarella', 'Pomodoro'])
+sandwich('Luca', ['Pollo', 'Insalata', 'Maionese', 'Pomodoro'])
+print()
+
+#8-13. User Profile:  Build a profile of yourself by calling build_profile(), using your first and last names and three other key-value pairs that 
+# describe you. All the values must be passed to the function as parameters. The function then must return stra string such as "Eric Crow, age 45, 
+# hair brown, weight 67"
+
+def build_profile(fullname: str, age: int, hair: str, eyes: str)-> str:
+    personal_dict:dict={
+        'name' : fullname,
+        'age' : age,
+        'color hair' : hair,
+        'color eyes': eyes
+        }
+    print(f'{personal_dict["name"]}, {personal_dict["age"]} years old, {personal_dict["color hair"]}, {personal_dict["color eyes"]}')
+    
+build_profile('Marwan Rafik', 19, 'black hair', 'black eyes')
