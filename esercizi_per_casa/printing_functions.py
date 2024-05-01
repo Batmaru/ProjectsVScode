@@ -1,4 +1,4 @@
-8.15
+
 
 def make_car(manufacturer: str, model: str, color=None, tow_package=False) -> dict:
     car_info = {
@@ -9,5 +9,3 @@ def make_car(manufacturer: str, model: str, color=None, tow_package=False) -> di
     }
     return car_info
 
-car = make_car('subaru', 'outback', color='blue', tow_package=True)
-print(car)

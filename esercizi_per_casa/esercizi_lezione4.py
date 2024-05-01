@@ -2,9 +2,10 @@
 # imparando in questo capitolo. Richiama la funzione e assicurati che il messaggio venga visualizzato correttamente.
 
 def display_message():
-    print("In questo capitolo stiamo imparando a definire e utilizzare funzioni in Python.")
+    messages: str=("In questo capitolo stiamo imparando a definire e utilizzare funzioni in Python.")
+    return messages
 
-display_message()
+print(display_message())
 print()
 
 #8-2. Libro preferito: scrivi una funzione chiamata favorite_book() che accetta un parametro, titolo. La funzione dovrebbe 
@@ -251,4 +252,12 @@ def make_car(manufacturer: str, model: str, color=None, tow_package=False) -> di
 
 car = make_car('subaru', 'outback', color='blue', tow_package=True)
 print(car)
+print()
+
+#8.16
+import sandwich_function
+from sandwich_function import sandwich
+from sandwich_function import sandwich as fn
+import sandwich_function as mn
+from sandwich_function import *
 
