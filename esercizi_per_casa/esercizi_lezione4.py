@@ -1,7 +1,7 @@
 #8-1. Messaggio: scrivi una funzione chiamata display_message() che stampi una frase che racconta a tutti ciò che stai 
 # imparando in questo capitolo. Richiama la funzione e assicurati che il messaggio venga visualizzato correttamente.
 
-def display_message():
+def display_message()-> None:
     messages: str=("In questo capitolo stiamo imparando a definire e utilizzare funzioni in Python.")
     return messages
 
@@ -12,7 +12,7 @@ print()
 # stampare un messaggio come "Uno dei miei libri preferiti è Alice nel Paese delle Meraviglie". Chiama la funzione, 
 # assicurandoti di includere il titolo di un libro come argomento nella chiamata alla funzione.
 
-def favorite_book(title: str):
+def favorite_book(title: str)-> None:
         print(f'my favorite book is: {title}')
         
 favorite_book('"the stoic philosphy of Marcus Aurelius"')
