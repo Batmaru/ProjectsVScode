@@ -234,3 +234,21 @@ def build_profile(fullname: str, age: int, hair: str, eyes: str)-> str:
     print(f'{personal_dict["name"]}, {personal_dict["age"]} years old, {personal_dict["color hair"]}, {personal_dict["color eyes"]}')
     
 build_profile('Marwan Rafik', 19, 'black hair', 'black eyes')
+
+#8-14. Cars: Write a function that stores information about a car in a dictionary. The function should always receive a manufacturer and a model name. 
+# It should then accept an arbitrary number of keyword arguments. Call the function with the required information and two other name-value pairs, such 
+# as a color or an optional feature. Your function should work for a call like this one: car = make_car('subaru', 'outback', color='blue', tow_package=True) 
+# Print the dictionary that’s returned to make sure all the information was stored correctly. 
+
+def make_car(manufacturer: str, model: str, color=None, tow_package=False) -> dict:
+    car_info = {
+        'manufacturer': manufacturer,
+        'model': model,
+        'color': color,
+        'tow_package': tow_package
+    }
+    return car_info
+
+car = make_car('subaru', 'outback', color='blue', tow_package=True)
+print(car)
+
