@@ -170,21 +170,21 @@ zookeeper1.add_animal(tiger, savannah)
 zookeeper1.add_animal(cheetah, savannah)
 zookeeper1.add_animal(scorpion, desert)
 
-print(zookeeper1.clean(desert))
+zookeeper1.clean(desert)
 
 # Creazione di altre istanze di Animal
 elephant = Animal(name="Elephant", species="Elephas maximus", age=8, height=3.5, width=2.0, preferred_habitat="forest")
 rhinoceros = Animal(name="Rhinoceros", species="Rhinocerotidae", age=6, height=2.2, width=1.2, preferred_habitat="savannah")
 
 # Chiamata al metodo add_animal() del nuovo guardiano dello zoo
-# zookeeper2.add_animal(elephant, forest)
+zookeeper2.add_animal(elephant, forest)
 zookeeper2.add_animal(rhinoceros, savannah)
 
 
 # Chiamata al metodo feed() e clean() del nuovo guardiano dello zoo
-print(zookeeper1.feed(lion))
-print(zookeeper2.feed(rhinoceros))
-print(zookeeper2.clean(forest))
+zookeeper1.feed(lion)
+zookeeper2.feed(rhinoceros)
+zookeeper2.clean(forest)
 
 # aggiungiamo un altro animale
 cammello = Animal(name="cammello", species="cammello grande", age=8, height=3.5, width=2.0, preferred_habitat="Desert")
@@ -201,10 +201,10 @@ for i in range(5):
 zookeeper1.feed(giraffe)
 
 # Pulisci un recinto con occupazione nulla
-print(zookeeper1.clean(inesistent_fence))
+zookeeper1.clean(inesistent_fence)
 
 # Pulisci un recinto con occupazione massima
-print(zookeeper1.clean(savannah))
+zookeeper1.clean(savannah)
 
 # Aggiungi un altro guardiano allo zoo
 zookeeper3 = Zookeeper("Carlo", "Bianchi", 789)
