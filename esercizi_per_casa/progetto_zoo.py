@@ -16,7 +16,7 @@ class Zoo:
         frase_intera += (f'Fences:')
         frase_intera += (f'{recinti}')
         return frase_intera
-        
+
         
 
 class Animal:
