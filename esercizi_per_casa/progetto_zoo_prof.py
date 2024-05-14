@@ -31,8 +31,8 @@ class Animal:
         healt = 100 * (1 / max(age, 1))
         self.health =  healt 
         self.current_fence_animals = []
-        self.current_area_remaining= None
-        self.current_fence_area = None
+        self.current_area_remaining= 0
+        self.current_fence_area = 0
           # Aggiungi l'attributo current_fence con valore predefinito None
         
     def __str__(self) -> str:
@@ -75,20 +75,25 @@ class Zookeeper:
 
     def add_animal(self, animal: Animal, fence: Fence):
         animal_area = self.animal_area(animal)
+        if animal in fence.animals:
+            fence.animals.remove(animal)
+            fence.remaining += animal_area
+            print("l'animale era gia presente solo che ora ha statistiche diverse da quelle  iniziali perche è stato nutrito")
+
         animal.current_fence_animals = fence.animals
         animal.current_area_remaining = fence.remaining
-        if animal not in fence.animals:
-            if animal.preferred_habitat == fence.habitat:
-                if animal_area <= fence.remaining:
-                    fence.animals.append(animal)
-                    fence.remaining -= animal_area
-                    animal.current_fence_area = fence.area
-                    animal.current_area_remaining = fence.remaining  
-                    animal.current_fence_animals=fence.animals  # Imposta l'attributo current_fence dell'animale con il recinto in cui viene aggiunto
-                    return f"L'animale {animal.name} è stato aggiunto con successo al recinto."
-
-        return "Impossibile aggiungere l'animale al recinto, è gia presente!."
-    
+        if animal.preferred_habitat == fence.habitat:
+            if animal_area <= fence.remaining:
+                fence.animals.append(animal)
+                fence.remaining -= animal_area
+                animal.current_fence_area = fence.area
+                animal.current_area_remaining = fence.remaining  
+                animal.current_fence_animals=fence.animals  
+                return f"L'animale {animal.name} è stato aggiunto o aggiornato con successo al recinto.\n"
+            else:
+                return "Impossibile aggiungere l'animale al recinto, non c'è abbastanza spazio!.\n"
+        else:
+            return "Impossibile aggiungere l'animale al recinto, non rispetta l'habitat!.\n"
 
     
     #funzione remove_animal    
@@ -99,9 +104,10 @@ class Zookeeper:
             fence.remaining += self.animal_area(animal)
             animal.current_fence_area = fence.area
             animal.current_area_remaining = fence.remaining 
-            animal.current_fence_animals=fence.animals  # Imposta l'attributo current_fence dell'animale su None
+            animal.current_fence_animals=fence.animals  
             return f"L'animale {animal.name} è stato rimosso dal recinto."
-        return "L'animale non è presente nel recinto."
+        else:
+            return "L'animale non è presente nel recinto."
         
 
     def feed(self, animal: Animal):
@@ -113,6 +119,7 @@ class Zookeeper:
             area_remaining -= self.animal_area(animale)
 
         animal.current_area_remaining = area_remaining
+       
         
         
         if animal in animal.current_fence_animals:
@@ -133,42 +140,31 @@ class Zookeeper:
                 frase_resoconto += f"Spazio  recinto: {animal.current_fence_area}\n"
                 frase_resoconto += f"area dell' animale prima del nutrimento: {area_animal_before}\n"
                 frase_resoconto += f"area dell' animale dopo il nutrimento: {new_area}\n"
+                return frase_resoconto
+            else: 
+                frase_resoconto += f"animale non nutrito: {animal}, supererebbe l'area disponibile, (area richiesta= {food_required})"   
+                return frase_resoconto
+        else:
+            return  'animale non presente nel recinto'
+
                 
-            else:
-                frase_resoconto += f"impossibile nutrire l'animale {animal}, non è presente nel recinto"
-
-        return frase_resoconto + '\n'
-
-        
-    
-
-            
-    def clean(self, fence: Fence) -> str:
+    def clean(self, fence: Fence) :
         area_remaining = fence.area
         for animal in fence.animals:
             area_animal= animal.width * animal.height
             area_remaining-= area_animal 
-
-        frase_resoconto = ""
-        time = 0
+        
+        time = 0.0
         total_occupied_area = fence.area - area_remaining
+        
         if total_occupied_area != 0:
             time = total_occupied_area / fence.area
-            frase_resoconto += f"Dati pulizia del recinto: Fence(area={fence.area}, temperature={fence.temperature}, habitat={fence.habitat})\n\n"
-            frase_resoconto += f"l'area occupata è di: {total_occupied_area}\n"
-            frase_resoconto += f'il tempo richiesto è: {time}\n'
-            return frase_resoconto + '\n\n'
+            return time 
         else:
-            time = fence.area
-            frase_resoconto += f"Dati pulizia del recinto: Fence(area={fence.area}, temperature={fence.temperature}, habitat={fence.habitat})\n\n"
-            frase_resoconto += f"l'area occupata è di: {total_occupied_area}\n"
-            frase_resoconto += f'il tempo richiesto è: {time}\n'
-            return frase_resoconto + '\n\n'
-        
+            time = float(fence.area)
+            return time
 
-                            
-    
-            
+
 # Creazione di un'istanza di Zookeeper
 zookeeper1 = Zookeeper("Mario", "Rossi", 123)
 
@@ -176,76 +172,34 @@ zookeeper1 = Zookeeper("Mario", "Rossi", 123)
 zookeeper2 = Zookeeper("Luigi", "Verdi", 456)
      
 # Creazione di un'istanza di Fence
-savannah = Fence(100, 25, "SavAnnah")
+savannah = Fence(100, 25, "Savannah")
 desert = Fence(80, 30, "Desert")
-forest= Fence(70, 30, "forest")
-# Creazione di un'istanza di Animal
-lion = Animal(name= "Leone", species= "Panthera leo", age=5,height= 2, width=1.0, preferred_habitat="savannah")
-tiger = Animal(name= 'tigre', species= 'feline', age = 5, height=2, width=1.0, preferred_habitat= 'Savannah')
-giraffe = Animal(name='Giraffe', species='Giraffa', age=6, height=5, width=1.5, preferred_habitat='Savannah')
-cheetah = Animal(name='Cheetah', species='Acinonyx', age=4, height=1.5, width=0.8, preferred_habitat='Savannah')
-scorpion = Animal(name="Scorpion", species="Scorpiones", age=2, height=0.1, width=0.2, preferred_habitat="Desert")
-      
+forest= Fence(70, 30, "forest")        
 # Creazione di un'istanza di Zoo con due recinti
-zoo2 = Zoo(fences=[savannah, desert, forest], zookeepers=[zookeeper1, zookeeper2])
+zoo2 = Zoo(fences=[savannah, desert, forest], zookeepers=[zookeeper1, zookeeper2])# Creazione di un'istanza di Animal
+lion = Animal("Leo", "Lion", 5, 1.2, 2.5, "Savannah")
+elephant = Animal("Ellie", "Elephant", 10, 2.5, 5.0, "Savannah")
+giraffe = Animal("Gerry", "Giraffe", 7, 4.0, 2.0, "Savannah")
+tiger = Animal("Tigro", "Tiger", 6, 1.5, 2.0, "Forest")
 
-# Chiamata al metodo add_animal()
-zookeeper1.add_animal(lion,savannah)
-zookeeper1.add_animal(giraffe, savannah)
-zookeeper1.add_animal(tiger, savannah)
-zookeeper1.add_animal(cheetah, savannah)
-zookeeper1.add_animal(scorpion, desert)
+# Aggiunta di animali ai recinti
+print(zookeeper1.add_animal(lion, savannah))
+print(zookeeper1.add_animal(elephant, savannah))
+print(zookeeper1.add_animal(giraffe, savannah))
+print(zookeeper2.add_animal(tiger, forest))
 
-print(zookeeper2.feed(giraffe))
-print(zookeeper2.feed(giraffe))
+# Descrizione dello zoo
+print(zoo2.describe_zoo())
 
-print(zookeeper1.clean(savannah))
-
-# Creazione di altre istanze di Animal
-elephant = Animal(name="Elephant", species="Elephas maximus", age=8, height=3.5, width=2.0, preferred_habitat="forest")
-rhinoceros = Animal(name="Rhinoceros", species="Rhinocerotidae", age=6, height=2.2, width=1.2, preferred_habitat="savannah")
-
-# Chiamata al metodo add_animal() del nuovo guardiano dello zoo
-zookeeper2.add_animal(elephant, forest)
-zookeeper2.add_animal(rhinoceros, savannah)
-
-
-# Chiamata al metodo feed() e clean() del nuovo guardiano dello zoo
+# Alimentazione degli animali
 print(zookeeper1.feed(lion))
-zookeeper2.feed(rhinoceros)
-print(zookeeper2.clean(forest))
+print(zookeeper1.add_animal(lion, savannah))
+print(zookeeper1.feed(lion))
+print(zookeeper1.feed(elephant))
+print(zookeeper1.feed(giraffe))
+print(zookeeper2.feed(tiger))
 
-# aggiungiamo un altro animale
-cammello = Animal(name="cammello", species="cammello grande", age=8, height=3.5, width=2.0, preferred_habitat="Desert")
-print(zookeeper1.add_animal(cammello, desert))
+# Pulizia dei recinti
+print(zookeeper1.clean(savannah))
+print(zookeeper1.clean(desert))
 
-# Rimuovi un animale che non esiste in un recinto
-inesistent_fence= Fence(288, 78, 'inesistent')
-zookeeper1.remove_animal(Animal(name="NonExistingAnimal", species="Unknown", age=0, height=0, width=0, preferred_habitat="Unknown"),inesistent_fence )
-
-# Nutri un animale in un recinto pieno
-lion_new = Animal(name= "Leone", species= "Panthera leo", age=5,height= 2, width=1.0, preferred_habitat="savannah")
-for i in range(5):
-    zookeeper1.add_animal(lion_new, savannah)
-zookeeper1.feed(lion)
-
-# Pulisci un recinto con occupazione nulla
-zookeeper1.clean(inesistent_fence)
-
-# Pulisci un recinto con occupazione massima
-zookeeper1.clean(savannah)
-
-# Aggiungi un altro guardiano allo zoo
-zookeeper3 = Zookeeper("Carlo", "Bianchi", 789)
-zoo2.zookeepers.append(zookeeper3)
-
-# Aggiungi un altro guardiano allo zoo
-zookeeper4 = Zookeeper("marwan", "rafik", 256)
-zoo2.zookeepers.append(zookeeper4)
-
-#zookeeper1.remove_animal(lion, savannah)
-zookeeper1.remove_animal(lion, savannah)
-zookeeper1.feed(lion)
-
-# Descrivi lo zoo con il nuovo guardiano
-zoo2.describe_zoo()
