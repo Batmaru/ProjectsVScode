@@ -33,7 +33,7 @@ class Animal:
         self.current_fence_animals = []
         self.current_area_remaining= 0
         self.current_fence_area = 0
-          # Aggiungi l'attributo current_fence con valore predefinito None
+          
         
     def __str__(self) -> str:
         return f"(name={self.name}, species={self.species}, age={self.age})"
@@ -78,7 +78,7 @@ class Zookeeper:
         if animal in fence.animals:
             fence.animals.remove(animal)
             fence.remaining += animal_area
-            print("l'animale era gia presente solo che ora ha statistiche diverse da quelle  iniziali perche è stato nutrito")
+            
 
         animal.current_fence_animals = fence.animals
         animal.current_area_remaining = fence.remaining
@@ -89,7 +89,7 @@ class Zookeeper:
                 animal.current_fence_area = fence.area
                 animal.current_area_remaining = fence.remaining  
                 animal.current_fence_animals=fence.animals  
-                return f"L'animale {animal.name} è stato aggiunto o aggiornato con successo al recinto.\n"
+                return f"L'animale {animal.name} è stato aggiunto con successo al recinto.\n"
             else:
                 return "Impossibile aggiungere l'animale al recinto, non c'è abbastanza spazio!.\n"
         else:
@@ -165,6 +165,7 @@ class Zookeeper:
             return time
 
 
+  
 # Creazione di un'istanza di Zookeeper
 zookeeper1 = Zookeeper("Mario", "Rossi", 123)
 
@@ -184,22 +185,24 @@ tiger = Animal("Tigro", "Tiger", 6, 1.5, 2.0, "Forest")
 
 # Aggiunta di animali ai recinti
 print(zookeeper1.add_animal(lion, savannah))
-print(zookeeper1.add_animal(elephant, savannah))
-print(zookeeper1.add_animal(giraffe, savannah))
-print(zookeeper2.add_animal(tiger, forest))
+zookeeper1.add_animal(elephant, savannah)
+zookeeper1.add_animal(giraffe, savannah)
+zookeeper2.add_animal(tiger, forest)
 
-# Descrizione dello zoo
-print(zoo2.describe_zoo())
+
 
 # Alimentazione degli animali
 print(zookeeper1.feed(lion))
 print(zookeeper1.add_animal(lion, savannah))
 print(zookeeper1.feed(lion))
-print(zookeeper1.feed(elephant))
-print(zookeeper1.feed(giraffe))
-print(zookeeper2.feed(tiger))
+zookeeper1.feed(elephant)
+zookeeper1.feed(giraffe)
+zookeeper2.feed(tiger)
 
 # Pulizia dei recinti
-print(zookeeper1.clean(savannah))
-print(zookeeper1.clean(desert))
+zookeeper1.clean(savannah)
+zookeeper1.clean(desert)
+
+# Descrizione dello zoo
+print(zoo2.describe_zoo())
 
