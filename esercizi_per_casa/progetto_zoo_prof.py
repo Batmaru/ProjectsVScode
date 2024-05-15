@@ -202,6 +202,8 @@ zookeeper2.add_animal(tiger, forest)
 print(zookeeper1.feed(lion))
 print(zookeeper1.add_animal(lion, savannah))
 print(zookeeper1.feed(lion))
+print(zookeeper1.feed(giraffe))
+
 zookeeper1.feed(elephant)
 zookeeper1.feed(giraffe)
 zookeeper2.feed(tiger)
