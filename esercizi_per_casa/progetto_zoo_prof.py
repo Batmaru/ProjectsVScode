@@ -76,24 +76,23 @@ class Zookeeper:
     def add_animal(self, animal: Animal, fence: Fence):
         animal_area = self.animal_area(animal)
         if animal in fence.animals:
-            fence.animals.remove(animal)
-            fence.remaining += animal_area
-            
-
-        animal.current_fence_animals = fence.animals
-        animal.current_area_remaining = fence.remaining
-        if animal.preferred_habitat == fence.habitat:
-            if animal_area <= fence.remaining:
-                fence.animals.append(animal)
-                fence.remaining -= animal_area
-                animal.current_fence_area = fence.area
-                animal.current_area_remaining = fence.remaining  
-                animal.current_fence_animals=fence.animals  
-                return f"L'animale {animal.name} è stato aggiunto con successo al recinto.\n"
-            else:
-                return "Impossibile aggiungere l'animale al recinto, non c'è abbastanza spazio!.\n"
+            return f'impossibile aggiungere un animale già presente\n'
+        
         else:
-            return "Impossibile aggiungere l'animale al recinto, non rispetta l'habitat!.\n"
+            animal.current_fence_animals = fence.animals
+            animal.current_area_remaining = fence.remaining
+            if animal.preferred_habitat == fence.habitat:
+                if animal_area <= fence.remaining:
+                    fence.animals.append(animal)
+                    fence.remaining -= animal_area
+                    animal.current_fence_area = fence.area
+                    animal.current_area_remaining = fence.remaining  
+                    animal.current_fence_animals=fence.animals  
+                    return f"L'animale {animal.name} è stato aggiunto con successo al recinto.\n"
+                else:
+                    return "Impossibile aggiungere l'animale al recinto, non c'è abbastanza spazio!.\n"
+            else:
+                return "Impossibile aggiungere l'animale al recinto, non rispetta l'habitat!.\n"
 
     
     #funzione remove_animal    
@@ -164,6 +163,14 @@ class Zookeeper:
             time = float(fence.area)
             return time
 
+                            
+    
+  
+
+                            
+    
+  
+
 
   
 # Creazione di un'istanza di Zookeeper
@@ -205,4 +212,3 @@ zookeeper1.clean(desert)
 
 # Descrizione dello zoo
 print(zoo2.describe_zoo())
-
