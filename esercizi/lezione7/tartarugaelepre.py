@@ -3,12 +3,13 @@ import random
 lista_percorso: list=[ "_" for n in range (1,71)]
 posizione_tartaruga: str= "T"
 posizione_lepre: str= "H"
-lista_tartaruga: list= [ "_" for n in range (1,71)]
+lista_tartaruga: list= [ "_" for n in range (1,100)]
 lista_tartaruga.pop(0)
 lista_tartaruga.insert(0,posizione_tartaruga)
-lista_lepre: list=[ "_" for n in range (1,71)]
+lista_lepre: list=[ "_" for n in range (1,100)]
 lista_lepre.pop(0)
 lista_lepre.insert(0,posizione_lepre)
+
 
 
 
@@ -35,7 +36,7 @@ def calcola_tartaruga(lista_tartaruga: list):
         #scivolata
     elif 6<= n_random<=7:
         index=lista_tartaruga.index("T") 
-        if index- 6 <0:
+        if index+1- 6 <=0:
             lista_tartaruga.pop(index)
             lista_tartaruga.insert(index,"_")
             lista_tartaruga.pop(0)
@@ -73,9 +74,13 @@ def calcola_lepre(lista_lepre: list):
     """1<=i<=2 (+0) = riposo, 3<=i<=4 = grande balzo(+9), i=5 = grande scivolata(-12, se la T ha posizione minore di 12, T torna in posizione 1), 
     6<=i<=8 = piccolo_balzo(+1), 9<=i<=10 = piccola scivolata (-2, ma non meno di posizione 1)"""
     n_random = random.randint(1,10)
+    print(f"il numero random è: {n_random}")
     #riposo
     if 1<=n_random<=2:
-        return lista_lepre
+        posizioneH = lista_lepre.index("H")
+        lista_lepre.pop(posizioneH)
+        lista_lepre.insert(posizioneH, "H")
+        
     
     #grande balzo
     elif 3<=n_random<=4:
@@ -90,7 +95,7 @@ def calcola_lepre(lista_lepre: list):
     elif n_random==5:
         posizioneL=lista_lepre.index("H")
 
-        if posizioneL>12:
+        if posizioneL+1>12:
             posizioneLdopo=posizioneL-12
             lista_lepre.pop(posizioneL)
             lista_lepre.insert(posizioneL,"_")
@@ -114,7 +119,7 @@ def calcola_lepre(lista_lepre: list):
     #piccola scivolata
     elif 9<=n_random<=10:
         posizioneL=lista_lepre.index("H")
-        if posizioneL>1:
+        if posizioneL+1>2:
             posizioneLdopo=posizioneL-2
             lista_lepre.pop(posizioneL)
             lista_lepre.insert(posizioneL,"_")
@@ -128,6 +133,18 @@ def calcola_lepre(lista_lepre: list):
 
     return lista_lepre
 
+def posizione(lista_tartaruga: list,lista_lepre: list):
+    if lista_tartaruga.index("T")+1<70:
+        print(f"la tartaruga è in posizione {lista_tartaruga.index('T')+1}")
+    else:
+        print(f"la tartaruga ha raggiunto il traguardo")
+    if lista_lepre.index("H")+1<70:
+        print(f"la lepre è in posizione {lista_lepre.index('H')+1}")
+    else:
+        print(f"la lepre ha raggiunto il traguardo")
+    print()
+    
+
 
         
 t1=True
@@ -137,40 +154,42 @@ if tick == 0:
     print("BANG !!!!! AND THEY'RE OFF !!!!")
     lista_tartaruga.pop(0)
     lista_tartaruga.insert(0,posizione_tartaruga)
-    lista_lepre.pop
+    lista_lepre.pop(0)
     lista_lepre.insert(0, posizione_lepre)
     tick+=1
 while t1==True:
         while t2==True:
+            print( f"tick n :{tick}\n")
             lista_tartaruga=calcola_tartaruga(lista_tartaruga)
             lista_lepre=calcola_lepre(lista_lepre)
+            posizione(lista_tartaruga, lista_lepre)
             tick+=1
 
-            if lista_tartaruga.index("T")> lista_lepre.index("H"):
-                print("TARTARUGA IS IN THE LEAD !!!!")
+            # if lista_tartaruga.index("T")> lista_lepre.index("H") and lista_tartaruga.index("T")<70:
+            #     print("TARTARUGA IS IN THE LEAD !!!!")
 
-            elif lista_tartaruga.index("T")< lista_lepre.index("H"):
-                print("LEPRE IS IN THE LEAD !!!!")  
+            # elif lista_tartaruga.index("T")< lista_lepre.index("H") and lista_lepre.index("H")<70:
+            #     print("LEPRE IS IN THE LEAD !!!!")  
 
-            elif lista_tartaruga.index("T")== lista_lepre.index("H") and lista_tartaruga.index:
+            if lista_tartaruga.index("T")== lista_lepre.index("H") and lista_tartaruga.index("T")<70:
                 lista_lepre_ouch= [n for n in lista_lepre]
-                lista_tartaruga_ouch=[n for n in lista_tartaruga]
+                lista_tartaruga_ouch: list = [n for n in lista_tartaruga]
                 posizioneL= lista_lepre_ouch.index("H")
-                posizioneT= lista_tartaruga_ouch.index("T")
+                posizioneT: int= lista_tartaruga_ouch.index("T")
                 lista_lepre_ouch.pop(posizioneL)
                 lista_lepre_ouch.insert(posizioneL,"Ouch")
                 lista_tartaruga_ouch.pop(posizioneT)
                 lista_tartaruga_ouch.insert(posizioneT,"Ouch")
-                print(f'posizione tartaruga: {lista_tartaruga_ouch}, \n\n posizione lepre{lista_lepre_ouch}')
+                print(f'posizione tartaruga: {lista_tartaruga_ouch}, \n\nposizione lepre: {lista_lepre_ouch}')
             
-            elif lista_tartaruga.index("T") == lista_lepre.index("H") and lista_tartaruga.index("T")>=70:
+            elif lista_tartaruga.index("T") == lista_lepre.index("H") and lista_tartaruga.index("T")>=69:
                 t2=False
                 print ("IT'S A TIE !!!!")
             
-            elif lista_tartaruga.index("T")>=70 and lista_lepre.index("H")<=70:
+            elif lista_tartaruga.index("T")>=69 and lista_lepre.index("H")<=69:
                 t2=False
                 print ("TARTARUGA WINS !!!!")
-            elif lista_lepre.index("T") >= 70 and lista_tartaruga.index("H"):
+            elif lista_lepre.index("H") >= 69 and lista_tartaruga.index("T")<=69:
                 t2=False
                 print ("LEPRE WINS !!!!")
         t1=False
