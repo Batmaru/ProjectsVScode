@@ -138,6 +138,7 @@ def posizione(lista_tartaruga: list,lista_lepre: list):
         print(f"la tartaruga è in posizione {lista_tartaruga.index('T')+1}")
     else:
         print(f"la tartaruga ha raggiunto il traguardo")
+        
     if lista_lepre.index("H")+1<70:
         print(f"la lepre è in posizione {lista_lepre.index('H')+1}")
     else:
