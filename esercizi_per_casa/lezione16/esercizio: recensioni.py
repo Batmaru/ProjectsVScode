@@ -74,7 +74,7 @@ class Media:
         for n in self.reviews:
             if n == Voto:
                 media= round(self.reviews.count(Voto) / len(self.reviews) * 100, 2)
-        return media    
+        return f'{media}%'    
 
         
     def recensioni(self):
