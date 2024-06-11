@@ -94,7 +94,7 @@ class Film(Media):
         super().__init__()
         self.set_title(title)
 
-
+media1=Media()
 film1:Film= Film(title="yeahbuddy")
 film1.aggiungiValutazione(4)
 film1.aggiungiValutazione(5)
@@ -105,3 +105,4 @@ print(film1.get_rate())
 film1.recensioni()
 
 print(film1.reviews)
+print(media1)
