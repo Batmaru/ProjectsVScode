@@ -16,4 +16,10 @@ class Paziente(Persona):
     
     def patientInfo(self):
         name=self.GetName()
-        return f'Paziente: {name} {self.GetLastName()}, Codice id
+        codice= self.getIdCode()
+        return (f'Paziente: {name} {self.GetLastName()},\nCodice id: {codice}')
+    
+
+pazient1 = Paziente('heisenberg', 'boh', 'chsbdui234')
+
+print(pazient1.patientInfo())
