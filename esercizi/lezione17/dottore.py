@@ -45,8 +45,10 @@ class Dottore(Persona):
         last_name = self.GetLastName()
         if age>=30:
             print(f'il dottor: {name} {last_name}, è un dottore valido')
+            return True
         else:
             print(f'il dottor: {name} {last_name}, non è un dottore valido')
+            return False
         
 
         
