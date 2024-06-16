@@ -6,7 +6,7 @@ class Dottore(Persona):
         if type(specialization)==str:
             self.__specialization = specialization
         else:
-            self.__specialisazion = None
+            self.__specialization = None
             raise TypeError("Specialisation must be a string")
         
         if type(parcel)==float:   
