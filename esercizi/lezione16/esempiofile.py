@@ -1,3 +1,26 @@
+class Esempio:
+
+    def __init__(self, name)-> None:
+
+        self.__attr_1 = self.__checkName(name)
+        self._attr_1= None
+        self.attr_1 = None
+
+    def __checkName(self, name: str):
+        #
+     return name.capitalize()
+   
+    # funzione per schermare l'attributo senza attributo name
+    # def setName(self, name: str):
+    #     name = name.lower()
+    #     self.attr_1 = name
+    def setName(self, name: str):
+        self._attr_1 = name.lower()
+
+es = Esempio()
+
+es.attr_1 = "fLAvio"
+
 # reader = open('esempiofile.txt')
 # print(reader)
 

@@ -50,5 +50,3 @@ class Persona:
         return (f"Ciao, mi chiamo {name} {surname}, ho {age} anni")
 
 
-persona1=Persona('gabriele', 'boh')
-print(persona1.greet())

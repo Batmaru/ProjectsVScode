@@ -20,6 +20,3 @@ class Paziente(Persona):
         return (f'Paziente: {name} {self.GetLastName()},\nCodice id: {codice}')
     
 
-pazient1 = Paziente('heisenberg', 'boh', 'chsbdui234')
-
-print(pazient1.patientInfo())

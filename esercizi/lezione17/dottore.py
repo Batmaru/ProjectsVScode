@@ -27,7 +27,7 @@ class Dottore(Persona):
         else:
             print("la specializzazione deve essere una stringa")
     
-    def getparcel(self):
+    def getParcel(self):
         return self.__parcel
     
     def getspecialization(self):
@@ -36,7 +36,7 @@ class Dottore(Persona):
     def Doctorgreet(self):
         stringa = self.greet()
         specialization= self.getspecialization()
-        parcel = self.getparcel()
+        parcel = self.getParcel()
         return stringa+ f", sono specializzato in: {specialization}, il mio stipendio è: {parcel}"
     
     def isValidDoctor(self):
@@ -53,13 +53,6 @@ class Dottore(Persona):
 
         
 
-dottore1= Dottore('marwan', 'boh', 'cardio chirurgo', 29.00)
-dottore2= Dottore('davide','trischitta','chirurgo plastico', 400.32)
-dottore1.SetAge(34)
-dottore2.SetAge(12)
-print(dottore1.Doctorgreet())
-print(dottore2.Doctorgreet())
-dottore1.isValidDoctor()
-dottore2.isValidDoctor()  
+
         
 
