@@ -15,7 +15,6 @@ class Persona:
             print("Il nome e il cognome devono essere stringhe")
     
     
-    
     def SetName(self, first_name)->str:
         if type(first_name) == str:
             self.__first_name = first_name
