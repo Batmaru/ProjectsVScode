@@ -100,7 +100,7 @@ class CifratoreACombinazione(CodificatoreMessaggi, DecodificatoreMessaggio):
                     testoinchiaro+= stringa2[n]
                     tuttelecodifiche.append(testoinchiaro)
                     numerocicli+=1
-        return f'le codifiche sono: {tuttelecodifiche}, quella finale è {testoinchiaro}'
+        return testoinchiaro
     
     def decodifica(self, testoinchiaro: str):
         testoinchiaro=testoinchiaro.lower()
@@ -119,7 +119,9 @@ class CifratoreACombinazione(CodificatoreMessaggi, DecodificatoreMessaggio):
             testoinchiaro=stringa1+stringa2
             tuttelecodifiche.append(testoinchiaro)
             numerocicli+=1
-        return f'le codifiche sono: {tuttelecodifiche}, quella finale è {testoinchiaro}'
+            
+            
+        return testoinchiaro
 
 
                 
@@ -137,15 +139,29 @@ class CifratoreACombinazione(CodificatoreMessaggi, DecodificatoreMessaggio):
 
 
 
-
+if __name__ == "__main__":
     
 
-chiave1=CifratoreAScorrimento(2)
+    chiave1=CifratoreAScorrimento(2)
+    with open("esercizi\lezione24\example.txt", 'w', encoding='utf-8') as file:
+        file.write('ciao io sono marwan rafik, sono bellissimo e ho 20 anni')
 
-print(chiave1.codifica('abcdefghijklmnopqrstuvwxyz'))
-print(chiave1.decodifica('cdefghijklmnopqrstuvwxyzab'))
+    with open("esercizi\lezione24\example.txt", 'r', encoding='utf-8') as file:
+        file1=file.read()
 
-numero1=CifratoreACombinazione(4)
+    filecodificato = chiave1.codifica(file1)
+    print(filecodificato)
+    print(chiave1.decodifica(filecodificato))
 
-print(numero1.codifica('asdrubale'))
-print(numero1.decodifica('auerldasb'))
+    numero1=CifratoreACombinazione(4)
+    
+    with open("esercizi\lezione24\examplecifratoreacombinazione.txt", 'w', encoding='utf-8') as file:
+        file.write('ciao io sono marwan rafik, sono bellissimo e ho 20 anni')
+
+    with open("esercizi\lezione24\examplecifratoreacombinazione.txt", 'r', encoding='utf-8') as file:
+        file2=file.read()
+
+    print(f'il testo letto è: {file2}')
+    filecodificato1 = numero1.codifica(file2)
+    print(f'la codifica è: {filecodificato1}')
+    print(f'la decodifcia è: {numero1.decodifica(numero1.codifica(file2))}')
