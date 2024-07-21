@@ -71,6 +71,23 @@ class File(Documento):
         
     
 
+documento1: Documento=Documento()
+documento1.setText('ciao sono mario')
+email=Email()
+email.setMittente('marwan@gmail.com')
+email.setDestinatario('mario@gmail.com')
+email.setTitolo('ti scrivo per chiedere come stai')
+email.setText('Questo è il contenuto del file')
+email.getText()
+email.writetofile('./documento.txt')
+file1=File('./documento.txt')
+file1.leggiTestoDaFile()
+print(file1.getText())
+
+
+
+
+
 # documento1: Documento=Documento()
 # documento1.setText('ciao sono mario')
 # email=Email()
